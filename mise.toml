@@ -2,10 +2,10 @@
 nodejs = "24.14.0"
 yarn   = "1.22.22"
 
-[tasks.deps]
+[tasks."dev:deps"]
 description = "Install dependencies"
 run = "yarn install"
 
-[tasks.build]
+[tasks."dev:build"]
 description = "Build JS"
 run = "yarn run gulp"

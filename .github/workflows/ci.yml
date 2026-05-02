@@ -25,10 +25,10 @@ jobs:
           persist-credentials: false
 
       - name: Setup mise
-        uses: jdx/mise-action@v3
+        uses: jdx/mise-action@v4
 
       - name: Install NodeJS dependencies
-        run: mise deps
+        run: mise dev:deps
 
       - name: Run Gulp
-        run: mise build
+        run: mise dev:build
