@@ -204,6 +204,9 @@
         zIndex: @settings.z_index + 1
       return
 
+    isFunction = (element) ->
+      return typeof element === 'function';
+
     placement: ->
       self = this
       offsetAmt = @settings.offset.y
@@ -235,19 +238,19 @@
       if @settings.newest_on_top == true
         offsetAmt = parseInt(offsetAmt) + parseInt(@settings.spacing) + @$ele.outerHeight()
         @reposition offsetAmt
-      if $.isFunction(self.settings.onShow)
+      if self.isFunction(self.settings.onShow)
         self.settings.onShow.call @$ele
       @$ele.one(@animations.start, ->
         hasAnimation = true
         return
       ).one @animations.end, ->
         self.$ele.removeClass self.settings.animate.enter
-        if $.isFunction(self.settings.onShown)
+        if self.isFunction(self.settings.onShown)
           self.settings.onShown.call this
         return
       setTimeout (->
         if !hasAnimation
-          if $.isFunction(self.settings.onShown)
+          if self.isFunction(self.settings.onShown)
             self.settings.onShown.call this
         return
       ), 600
@@ -258,7 +261,7 @@
       @$ele.find('[data-notify="dismiss"]').on 'click', ->
         self.close()
         return
-      if $.isFunction(self.settings.onClick)
+      if self.isFunction(self.settings.onClick)
         @$ele.on 'click', (event) ->
           if event.target != self.$ele.find('[data-notify="dismiss"]')[0]
             self.settings.onClick.call this, event
@@ -291,20 +294,20 @@
       hasAnimation = false
       @$ele.attr('data-closing', 'true').addClass @settings.animate.exit
       self.reposition posX
-      if $.isFunction(self.settings.onClose)
+      if self.isFunction(self.settings.onClose)
         self.settings.onClose.call @$ele
       @$ele.one(@animations.start, ->
         hasAnimation = true
         return
       ).one @animations.end, ->
         $(this).remove()
-        if $.isFunction(self.settings.onClosed)
+        if self.isFunction(self.settings.onClosed)
           self.settings.onClosed.call this
         return
       setTimeout (->
         if !hasAnimation
           self.$ele.remove()
-          if $.isFunction(self.settings.onClosed)
+          if self.isFunction(self.settings.onClosed)
             self.settings.onClosed.call this
         return
       ), 600
