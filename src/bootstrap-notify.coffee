@@ -204,9 +204,8 @@
         zIndex: @settings.z_index + 1
       return
 
-    isFunction = (element) ->
-      return typeof element === 'function';
-
+    isFunction: (element) ->
+      typeof element == 'function'
     placement: ->
       self = this
       offsetAmt = @settings.offset.y
