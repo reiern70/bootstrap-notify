@@ -229,6 +229,9 @@
         zIndex: this.settings.z_index + 1
       });
     },
+    isFunction: function(element) {
+      return typeof element === 'function';
+    },
     placement: function() {
       var css, hasAnimation, offsetAmt, self, settings;
       self = this;
@@ -267,20 +270,20 @@
         offsetAmt = parseInt(offsetAmt) + parseInt(this.settings.spacing) + this.$ele.outerHeight();
         this.reposition(offsetAmt);
       }
-      if ($.isFunction(self.settings.onShow)) {
+      if (self.isFunction(self.settings.onShow)) {
         self.settings.onShow.call(this.$ele);
       }
       this.$ele.one(this.animations.start, function() {
         hasAnimation = true;
       }).one(this.animations.end, function() {
         self.$ele.removeClass(self.settings.animate.enter);
-        if ($.isFunction(self.settings.onShown)) {
+        if (self.isFunction(self.settings.onShown)) {
           self.settings.onShown.call(this);
         }
       });
       setTimeout((function() {
         if (!hasAnimation) {
-          if ($.isFunction(self.settings.onShown)) {
+          if (self.isFunction(self.settings.onShown)) {
             self.settings.onShown.call(this);
           }
         }
@@ -292,7 +295,7 @@
       this.$ele.find('[data-notify="dismiss"]').on('click', function() {
         self.close();
       });
-      if ($.isFunction(self.settings.onClick)) {
+      if (self.isFunction(self.settings.onClick)) {
         this.$ele.on('click', function(event) {
           if (event.target !== self.$ele.find('[data-notify="dismiss"]')[0]) {
             self.settings.onClick.call(this, event);
@@ -329,21 +332,21 @@
       hasAnimation = false;
       this.$ele.attr('data-closing', 'true').addClass(this.settings.animate.exit);
       self.reposition(posX);
-      if ($.isFunction(self.settings.onClose)) {
+      if (self.isFunction(self.settings.onClose)) {
         self.settings.onClose.call(this.$ele);
       }
       this.$ele.one(this.animations.start, function() {
         hasAnimation = true;
       }).one(this.animations.end, function() {
         $(this).remove();
-        if ($.isFunction(self.settings.onClosed)) {
+        if (self.isFunction(self.settings.onClosed)) {
           self.settings.onClosed.call(this);
         }
       });
       setTimeout((function() {
         if (!hasAnimation) {
           self.$ele.remove();
-          if ($.isFunction(self.settings.onClosed)) {
+          if (self.isFunction(self.settings.onClosed)) {
             self.settings.onClosed.call(this);
           }
         }

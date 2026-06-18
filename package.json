@@ -11,7 +11,7 @@
   "author": "mouse0270 <rmcintosh@remabledesigns.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jbox-web/bootstrap-notify.git"
+    "url": "git+https://github.com/jbox-web/bootstrap-notify.git"
   },
   "bugs": {
     "url": "https://github.com/jbox-web/bootstrap-notify/issues"
@@ -26,15 +26,18 @@
     "message",
     "notice"
   ],
-  "dependencies": {},
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-plugin-coffee": "^0.1.15",
     "gulp": "^4.0.2",
     "gulp-coffee": "^3.0.3",
-    "gulp-eslint": "^6.0.0"
+    "gulp-eslint": "^6.0.0",
+    "gulp-terser": "^2.1.0"
   },
   "resolutions": {
     "tmp": "^0.2.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }
